@@ -1,5 +1,11 @@
 <template>
-  <div></div>
+  <v-card class="mx-auto mt-5" max-width="900">
+    <v-data-table
+      :headers="columnas"
+      :items="users"
+      class="elevation-19"
+    ></v-data-table>
+  </v-card>
 </template>
 
 <script>
@@ -16,6 +22,10 @@ export default {
   },
   data() {
     return {
+      columnas: [
+        { text: "NAME", value: "name", class: "green accent-2" },
+        { text: "EMAIL", value: "email", class: "green accent-2" }
+      ],
       users: []
     };
   },
@@ -23,7 +33,7 @@ export default {
     this.getUsers();
   },
   methods: {
-    //Get Templates
+    //Get Users
     async getUsers() {
       const axiosHeaders = {
         headers: {
@@ -37,8 +47,6 @@ export default {
 
         if (res.data.status == "success") {
           this.users = res.data.data;
-
-          console.log(this.users);
         }
       } catch (error) {
         this.$notify({

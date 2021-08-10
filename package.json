@@ -24,7 +24,6 @@
     "element-ui": "^2.14.1",
     "es6-promise": "^4.1.1",
     "express": "^4.17.1",
-    "faker": "^5.5.3",
     "fuse.js": "^3.2.0",
     "js-cookie": "^2.2.1",
     "jsonwebtoken": "^8.5.1",
@@ -38,13 +37,16 @@
     "register-service-worker": "^1.5.2",
     "tween.js": "^16.6.0",
     "vue-chartjs": "^3.4.0",
-    "vue2-transitions": "^0.2.3"
+    "vue2-transitions": "^0.2.3",
+    "vuetify": "^2.0.0"
   },
   "devDependencies": {
     "@babel/cli": "^7.12.1",
     "@babel/core": "^7.12.3",
     "@babel/node": "^7.12.6",
     "@babel/preset-env": "^7.12.1",
+    "@mdi/font": "^5.9.55",
+    "@nuxtjs/vuetify": "^1.12.1",
     "babel-plugin-component": "^1.1.1",
     "node-sass": "^4.12.0",
     "sass-loader": "^7.3.1"

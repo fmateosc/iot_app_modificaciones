@@ -4,8 +4,6 @@ const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 const { checkAuth } = require("../middlewares/authentication.js");
 
-const faker = require('faker');
-
 //models import
 import User from "../models/user.js";
 import EmqxAuthRule from "../models/emqx_auth.js";
@@ -17,7 +15,6 @@ import EmqxAuthRule from "../models/emqx_auth.js";
 //**** A P I *******
 //******************
 
-//GET ALL USERS
 router.get("/users", checkAuth, async (req, res) => {
   try {
     var users = await User.find();
@@ -29,7 +26,7 @@ router.get("/users", checkAuth, async (req, res) => {
 
     res.json(response)
   } catch (error) {
-    console.log("ERROR GETTING DEVICES");
+    console.log("ERROR GETTING USERS");
     console.log(error);
 
     const response = {

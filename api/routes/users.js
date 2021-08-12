@@ -6,6 +6,7 @@ const { checkAuth } = require("../middlewares/authentication.js");
 
 //models import
 import User from "../models/user.js";
+import Profile from "../models/profile.js";
 import EmqxAuthRule from "../models/emqx_auth.js";
 
 //POST -> req.body
@@ -103,6 +104,9 @@ router.post("/register", checkAuth, async (req, res) => {
       status: "success"
     };
 
+    //Crear perfil con el id del usuario y el resto de campos en blanco
+    await createPerfil(user);
+
     res.status(200).json(response);
   } catch (error) {
     console.log("ERROR - REGISTER ENDPOINT");
@@ -113,14 +117,12 @@ router.post("/register", checkAuth, async (req, res) => {
       error: error
     };
 
-    console.log(response);
-
     return res.status(500).json(response);
   }
 });
 
 //UPDATE USER
-router.put("/update", checkAuth, async (req, res) => {  
+router.put("/update", checkAuth, async (req, res) => {
   try {
     const userId = req.body.id;
     const userName = req.body.name;
@@ -155,7 +157,7 @@ router.put("/update", checkAuth, async (req, res) => {
 });
 
 //Activate - desactivate user
-router.put("/activateDesactivate", checkAuth, async (req, res) => {   
+router.put("/activateDesactivate", checkAuth, async (req, res) => {
   try {
     const userId = req.body.userId;
     const userActive = req.body.userActive;
@@ -184,7 +186,7 @@ router.put("/activateDesactivate", checkAuth, async (req, res) => {
     console.log(response);
 
     return res.status(500).json(response);
-  }    
+  }
 });
 
 //GET MQTT WEB CREDENTIALS
@@ -335,6 +337,27 @@ function makeid(length) {
     result += characters.charAt(Math.floor(Math.random() * charactersLength));
   }
   return result;
+}
+
+//Funcion para crear el perfil del usuario
+async function createPerfil(user) {
+  const newProfile = {
+    userId: user._id,
+    company: '',
+    avatar: '',
+    jobTitle: '',
+    firstName: '',
+    lastName: '',
+    address: '',
+    city: '',
+    country: '',
+    postalCode: '',
+    phone: ''
+  };
+
+  var profile = await Profile.create(newProfile);
+
+  return;  
 }
 
 module.exports = router;

@@ -16,6 +16,6 @@ const profileSchema = new Schema({
 });
 
 // convert to model
-const Profile = mongoose.model('Profile', userSchema);
+const Profile = mongoose.model('Profile', profileSchema);
 
 export default Profile;

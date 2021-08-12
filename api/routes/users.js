@@ -24,7 +24,7 @@ router.get("/users", checkAuth, async (req, res) => {
       data: users
     };
 
-    res.json(response)
+    res.json(response);
   } catch (error) {
     console.log("ERROR GETTING USERS");
     console.log(error);
@@ -36,7 +36,7 @@ router.get("/users", checkAuth, async (req, res) => {
 
     return res.status(500).json(response);
   }
-});  
+});
 
 //LOGIN
 router.post("/login", async (req, res) => {
@@ -83,7 +83,7 @@ router.post("/login", async (req, res) => {
 });
 
 //REGISTER
-router.post("/register", async (req, res) => {
+router.post("/register", checkAuth, async (req, res) => {
   try {
     const name = req.body.name;
     const email = req.body.email;
@@ -93,11 +93,11 @@ router.post("/register", async (req, res) => {
     const newUser = {
       name: name,
       email: email,
+      created_at: new Date(),
       password: encryptedPassword
     };
 
     var user = await User.create(newUser);
-
 
     const response = {
       status: "success"
@@ -117,6 +117,74 @@ router.post("/register", async (req, res) => {
 
     return res.status(500).json(response);
   }
+});
+
+//UPDATE USER
+router.put("/update", checkAuth, async (req, res) => {  
+  try {
+    const userId = req.body.id;
+    const userName = req.body.name;
+    const userEmail = req.body.email;
+
+    await User.updateOne(
+      { _id: userId },
+      {
+        name: userName,
+        email: userEmail
+      }
+    );
+
+    const response = {
+      status: "success"
+    };
+
+    res.status(200).json(response);
+  } catch (error) {
+    console.log("ERROR - REGISTER ENDPOINT");
+    console.log(error);
+
+    const response = {
+      status: "error",
+      error: error
+    };
+
+    console.log(response);
+
+    return res.status(500).json(response);
+  }
+});
+
+//Activate - desactivate user
+router.put("/activateDesactivate", checkAuth, async (req, res) => {   
+  try {
+    const userId = req.body.userId;
+    const userActive = req.body.userActive;
+
+    await User.updateOne(
+      { _id: userId },
+      {
+        active: !userActive
+      }
+    );
+
+    const response = {
+      status: "success"
+    };
+
+    res.status(200).json(response);
+  } catch (error) {
+    console.log("ERROR - REGISTER ENDPOINT");
+    console.log(error);
+
+    const response = {
+      status: "error",
+      error: error
+    };
+
+    console.log(response);
+
+    return res.status(500).json(response);
+  }    
 });
 
 //GET MQTT WEB CREDENTIALS

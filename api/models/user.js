@@ -9,6 +9,7 @@ const userSchema = new Schema({
   password: {  type: String, required: [true]},
   isAdmin : { type: Boolean },
   active : { type: Boolean },
+  created_at: { type: Date }
 });
 
 

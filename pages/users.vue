@@ -1,4 +1,5 @@
 <template>
+<div data-app>
   <v-card>    
     <!---USERS TABLE--------------------------------->
     <v-data-table
@@ -147,6 +148,7 @@
       </template>
     </v-data-table>
   </v-card>
+</div>
 </template>
 
 <script>

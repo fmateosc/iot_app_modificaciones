@@ -45,6 +45,7 @@
         </sidebar-item>
 
         <sidebar-item
+          v-if="$store.state.auth.userData.isAdmin"
           :link="{
             name: 'Users',
             icon: 'tim-icons icon-single-02',

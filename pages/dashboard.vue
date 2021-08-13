@@ -1,7 +1,4 @@
-<template>
-
-
-    
+<template>    
   <div class="row" v-if="$store.state.devices.length > 0">
 
     <div

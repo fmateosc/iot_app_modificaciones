@@ -1,5 +1,5 @@
 <template>
-  <v-card>
+  <v-card>    
     <!---USERS TABLE--------------------------------->
     <v-data-table
       class="p-20 elevation-19"
@@ -154,7 +154,7 @@ import * as moment from "moment";
 moment.locale("es");
 
 export default {
-  middleware: "authenticated",
+  middleware: ["authenticated", "isAdmin"],
   data() {
     return {
       options: {

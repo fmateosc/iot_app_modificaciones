@@ -68,7 +68,7 @@ router.post("/login", async (req, res) => {
 
     //if email and email ok
     if (bcrypt.compareSync(password, user.password)) {
-      user.set("password", undefined, { strict: false });
+      user.set("password", undefined, { strict: false });   
 
       const token = jwt.sign({ userData: user }, "securePasswordHere", {
         expiresIn: 60 * 60 * 24 * 30

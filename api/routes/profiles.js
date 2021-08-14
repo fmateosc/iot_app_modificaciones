@@ -21,11 +21,13 @@ router.post("/profile", checkAuth, async (req, res) => {
   try {
     const userId = req.body.userId;
     
-    var profile = await Profile.find({userId: userId});    
+    var profile = await Profile.find({userId: userId});  
+    var user = await User.find({_id: userId});  
 
     const response = {
       status: "success",
       profile: profile,
+      user: user
     };
 
     res.json(response);

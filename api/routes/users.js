@@ -66,7 +66,7 @@ router.post("/login", async (req, res) => {
       return res.status(401).json(response);
     }
 
-    //if email and email ok
+    //if email and user ok
     if (bcrypt.compareSync(password, user.password)) {
       user.set("password", undefined, { strict: false });   
 

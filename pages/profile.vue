@@ -110,7 +110,7 @@
         </div>
 
         <!-----------------BUTTON----------------->
-        <base-button 
+        <base-button v-if="!isAdmin" 
           type="primary" 
           class="btn-fill"
           @click="updateProfile()"
@@ -168,7 +168,7 @@ export default {
         company: "",
         name: "",
         email: "",
-        avatar: null,
+        avatar: "",
         jobTitle: "",
         firstName: "",
         lastName: "",
@@ -177,7 +177,9 @@ export default {
         country: "",
         postalCode: "",
         phone: ""
-      }
+      },
+      userId: "",
+      isAdmin: false
     };
   },
   mounted() {
@@ -185,9 +187,18 @@ export default {
   },
   methods: {
     //Get profile
-    async getProfile() {
+    async getProfile() { 
+      if(this.$store.state.auth.userData.isAdmin) {
+         this.userId = this.$store.state.profileUserId;
+         this.isAdmin = true;
+      } else {
+        this.userId = this.$store.state.auth.userData._id;
+        this.isAdmin = false;
+      }
+      
+       
       const toSend = {
-        userId: this.$store.state.auth.userData._id
+        userId: this.userId
       };
 
       const axiosHeaders = {
@@ -212,8 +223,8 @@ export default {
             this.profile.postalCode = res.data.profile[0].postalCode;
             this.profile.phone = res.data.profile[0].phone;
 
-            this.profile.name = this.$store.state.auth.userData.name;
-            this.profile.email = this.$store.state.auth.userData.email;
+            this.profile.name = res.data.user[0].name;
+            this.profile.email = res.data.user[0].email;
           }
         })
         .catch(e => {

@@ -62,6 +62,17 @@
             fab
             dark
             small
+            color="#5D4037"
+            @click="showProfile(item._id)"
+          >
+            <i class="fa fa-user-md" aria-hidden="true"></i>
+          </v-btn>
+
+          <v-btn
+            class="mr-2"
+            fab
+            dark
+            small
             color="#0097a7"
             @click="editUser(item)"
           >
@@ -78,7 +89,7 @@
             @click="activateDesactivate(item._id, 1)"
           >
             <v-icon>fas fa-lock</v-icon>
-          </v-btn>
+          </v-btn>          
 
           <v-btn
             v-else
@@ -90,7 +101,7 @@
             @click="activateDesactivate(item._id, 0)"
           >
             <v-icon>fas fa-unlock</v-icon>
-          </v-btn>
+          </v-btn>          
         </template>
 
         <template v-slot:top>
@@ -443,6 +454,22 @@ export default {
       this.generatePasswordRand();
 
       this.dialog = true;
+    },
+    //Show profile
+    showProfile(id) {
+      this.$store.commit('setProfileId', id);      
+
+      const toSend = {
+        userId: id,
+      };
+
+      const axiosHeaders = {
+        headers: {
+          token: this.$store.state.auth.token
+        }
+      };
+
+      $nuxt.$router.push("/profile");
     },
     getColor(active) {
       if (active == true) {

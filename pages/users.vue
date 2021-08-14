@@ -1,157 +1,196 @@
 <template>
-<div data-app>
-  <v-card>    
-    <!---USERS TABLE--------------------------------->
-    <v-data-table
-      class="p-20 elevation-19"
-      :headers="headers"
-      :items="users"
-      :search="search"
-      sort-by="name"
-      :footer-props="{ 'items-per-page-options': [5, 10, 15, -1] }"
-      :options="options"
-    >
-      
-      <!---ACTIVE OR INACTIVE--------------------------------->
-      <template v-slot:[`item.active`]="{ item }">
-        <v-chip :color="getColor(item.active)">
-         <span v-if="item.active">Active</span>
-         <span v-else>Inactive</span>
-        </v-chip>
-      </template>
-
-      <!---CREATED AT--------------------------------->
-      <template v-slot:[`item.created_at`]="{ item }">
-        {{ formatDate(item.created_at) }}
-      </template>
-
-      <!------ICONS DATATABLE-------------------------------------------->
-      <template v-slot:[`item.action`]="{ item }">
-        <v-btn
-          class="mr-2"
-          fab
-          dark
-          small
-          color="#0097a7"
-          @click="editUser(item)"
+  <div data-app>
+    <!-- Card stats -->
+    <div class="row">
+      <div class="col-xl-4 col-md-4">
+        <stats-card
+          title="Total Users"
+          type="gradient-red"
+          :sub-title="totalUsers"
         >
-          <v-icon dark>mdi-pencil</v-icon>
-        </v-btn>
-        
-        <v-btn 
-          v-if="item.active == 1" 
-          class="mr-2" 
-          fab dark small 
-          color="#303F9F"
-          @click="activateDesactivate(item._id, 1)"
-        >
-          <v-icon>fas fa-lock</v-icon>
-        </v-btn>
+        </stats-card> 
+             
+      </div>
 
-        <v-btn 
-          v-else 
-          class="mr-2" 
-          fab dark small 
-          color="#D32F2F"
-          @click="activateDesactivate(item._id, 0)"
+      <div class="col-xl-4 col-md-4">
+        <stats-card
+          title="Total Users actives"
+          type="gradient-red"
+          :sub-title="totalUsersActives"
         >
-          <v-icon>fas fa-unlock</v-icon>
-        </v-btn>
-      </template>
+        </stats-card>
+      </div>
 
-      <template v-slot:top>
-        <!---TOOL BAR--------------------------------->
-        <v-toolbar color="#3f51b5" style="height_50px">
-          <v-btn fab color="#00BCD4" bottom right absolute @click="newUser()">
-            <v-icon>mdi-plus</v-icon>
+      <div class="col-xl-4 col-md-4">
+        <stats-card
+          title="Total Users Inactives"
+          type="gradient-red"
+          :sub-title="totalUsersInactives"
+        >
+        </stats-card>
+      </div>
+    </div>
+
+    <v-card>
+      <!---USERS TABLE--------------------------------->
+      <v-data-table
+        class="p-20 elevation-19"
+        :headers="headers"
+        :items="users"
+        :search="search"
+        sort-by="name"
+        :footer-props="{ 'items-per-page-options': [5, 10, 15, -1] }"
+        :options="options"
+      >
+        <!---ACTIVE OR INACTIVE--------------------------------->
+        <template v-slot:[`item.active`]="{ item }">
+          <v-chip :color="getColor(item.active)">
+            <span v-if="item.active">Active</span>
+            <span v-else>Inactive</span>
+          </v-chip>
+        </template>
+
+        <!---CREATED AT--------------------------------->
+        <template v-slot:[`item.created_at`]="{ item }">
+          {{ formatDate(item.created_at) }}
+        </template>
+
+        <!------ICONS DATATABLE-------------------------------------------->
+        <template v-slot:[`item.action`]="{ item }">
+          <v-btn
+            class="mr-2"
+            fab
+            dark
+            small
+            color="#0097a7"
+            @click="editUser(item)"
+          >
+            <v-icon dark>mdi-pencil</v-icon>
           </v-btn>
 
-          <v-toolbar-title class="white--text">USERS</v-toolbar-title>
-        </v-toolbar>
+          <v-btn
+            v-if="item.active == 1"
+            class="mr-2"
+            fab
+            dark
+            small
+            color="#303F9F"
+            @click="activateDesactivate(item._id, 1)"
+          >
+            <v-icon>fas fa-lock</v-icon>
+          </v-btn>
 
-        <!---MODAL NEW USER AND EDIT USER-->
-        <v-dialog v-model="dialog" persistent max-width="800">
-          <template v-slot:activator="{ on }"></template>
-          <v-card class="p-b-10">
-            <v-card-title>
-              <span class="headline">{{ formTitle }}</span>
-            </v-card-title>
+          <v-btn
+            v-else
+            class="mr-2"
+            fab
+            dark
+            small
+            color="#D32F2F"
+            @click="activateDesactivate(item._id, 0)"
+          >
+            <v-icon>fas fa-unlock</v-icon>
+          </v-btn>
+        </template>
 
-            <v-card-text>
-              <v-row>
-                <v-col cols="12" sm="6" md="4">
-                  <v-text-field
-                    v-model="user.name"
-                    label="Name"
-                    color="white--text"
-                    persistent-hint
-                    outlined
-                  ></v-text-field>
-                </v-col>
+        <template v-slot:top>
+          <!---TOOL BAR--------------------------------->
+          <v-toolbar color="#3f51b5" style="height_50px">
+            <v-btn fab color="#00BCD4" bottom right absolute @click="newUser()">
+              <v-icon>mdi-plus</v-icon>
+            </v-btn>
 
-                <v-col cols="12" sm="6" md="4">
-                  <v-text-field
-                    v-model="user.email"
-                    type="email"
-                    label="Email"
-                    color="white--text"
-                    persistent-hint
-                    outlined
-                  ></v-text-field>
-                </v-col>
+            <v-toolbar-title class="white--text">USERS</v-toolbar-title>
+          </v-toolbar>
 
-                <!----EN MODO EDICIÓN DESACTIVAMOS EL CAMPO PASSWORD--->
-                <v-col v-if="editedIndex == 1" cols="12" sm="6" md="4">
-                  <v-text-field
-                    label="Password"
-                    color="white--text"
-                    persistent-hint
-                    outlined
-                    disabled
-                  ></v-text-field>
-                </v-col>
+          <!---MODAL NEW USER AND EDIT USER-->
+          <v-dialog v-model="dialog" persistent max-width="800">
+            <template v-slot:activator="{ on }"></template>
+            <v-card class="p-b-10">
+              <v-card-title>
+                <span class="headline">{{ formTitle }}</span>
+              </v-card-title>
 
-                <!----EN MODO INSERCION DESACTIVAMOS EL CAMPO PASSWORD--->
-                <v-col v-if="editedIndex == -1" cols="12" sm="6" md="4">
-                  <v-text-field
-                    v-model="user.password"
-                    label="Password"
-                    color="white--text"
-                    persistent-hint
-                    outlined
-                    disabled
-                  ></v-text-field>
-                </v-col>
-              </v-row>
-            </v-card-text>
+              <v-card-text>
+                <v-row>
+                  <v-col cols="12" sm="6" md="4">
+                    <v-text-field
+                      v-model="user.name"
+                      label="Name"
+                      color="white--text"
+                      persistent-hint
+                      outlined
+                    ></v-text-field>
+                  </v-col>
 
-            <v-card-actions>
-              <v-btn color="#455A64" class="ma-2 white--text" @click="cancel()"
-                >Cancel</v-btn
-              >
-              <v-btn
-                color="#607D8B"
-                class="ma-2 white--text"
-                @click="newUpdate()"
-                >Save</v-btn
-              >
-            </v-card-actions>
-          </v-card>
-        </v-dialog>
+                  <v-col cols="12" sm="6" md="4">
+                    <v-text-field
+                      v-model="user.email"
+                      type="email"
+                      label="Email"
+                      color="white--text"
+                      persistent-hint
+                      outlined
+                    ></v-text-field>
+                  </v-col>
 
-        <!---SEARCH--------------------------------->
-        <v-text-field
-          v-model="search"
-          label="Search"
-          class="col-4"
-        ></v-text-field>
-      </template>
-    </v-data-table>
-  </v-card>
-</div>
+                  <!----EN MODO EDICIÓN DESACTIVAMOS EL CAMPO PASSWORD--->
+                  <v-col v-if="editedIndex == 1" cols="12" sm="6" md="4">
+                    <v-text-field
+                      label="Password"
+                      color="white--text"
+                      persistent-hint
+                      outlined
+                      disabled
+                    ></v-text-field>
+                  </v-col>
+
+                  <!----EN MODO INSERCION DESACTIVAMOS EL CAMPO PASSWORD--->
+                  <v-col v-if="editedIndex == -1" cols="12" sm="6" md="4">
+                    <v-text-field
+                      v-model="user.password"
+                      label="Password"
+                      color="white--text"
+                      persistent-hint
+                      outlined
+                      disabled
+                    ></v-text-field>
+                  </v-col>
+                </v-row>
+              </v-card-text>
+
+              <v-card-actions>
+                <v-btn
+                  color="#455A64"
+                  class="ma-2 white--text"
+                  @click="cancel()"
+                  >Cancel</v-btn
+                >
+                <v-btn
+                  color="#607D8B"
+                  class="ma-2 white--text"
+                  @click="newUpdate()"
+                  >Save</v-btn
+                >
+              </v-card-actions>
+            </v-card>
+          </v-dialog>
+
+          <!---SEARCH--------------------------------->
+          <v-text-field
+            v-model="search"
+            label="Search"
+            class="col-4"
+          ></v-text-field>
+        </template>
+      </v-data-table>
+    </v-card>
+  </div>
 </template>
 
 <script>
+import StatsCard from "@/components/Cards/StatsCard";
+
 import * as moment from "moment";
 moment.locale("es");
 
@@ -176,7 +215,7 @@ export default {
       ],
       users: [],
       user: {
-        id: '',
+        id: "",
         name: "",
         email: "",
         password: ""
@@ -184,7 +223,10 @@ export default {
       search: "",
       active: "",
       dialog: false,
-      editedIndex: -1
+      editedIndex: -1,
+      totalUsers: 0,
+      totalUsersActives: 0,
+      totalUsersInactives: 0
     };
   },
   computed: {
@@ -214,6 +256,9 @@ export default {
 
         if (res.data.status == "success") {
           this.users = res.data.data;
+          this.totalUsers = res.data.totalUsers;
+          this.totalUsersActives = res.data.totalUsersActives;
+          this.totalUsersInactives = res.data.totalUsersInactives;
         }
       } catch (error) {
         this.$notify({
@@ -343,9 +388,9 @@ export default {
     },
     //Activate-Desactivate
     async activateDesactivate(id, active) {
-      const toSend = { 
+      const toSend = {
         userId: id,
-        userActive: active 
+        userActive: active
       };
 
       const axiosHeaders = {
@@ -358,13 +403,12 @@ export default {
         .put("/activateDesactivate", toSend, axiosHeaders)
         .then(res => {
           //success! - Usuario modificado.
-          if (res.data.status == "success") { 
-            
-            console.log(active)
-            var respuesta = 'Success! User activated...';
+          if (res.data.status == "success") {
+            console.log(active);
+            var respuesta = "Success! User activated...";
 
-            if (active === 1){
-              respuesta = "Success! User desactivated..."
+            if (active === 1) {
+              respuesta = "Success! User desactivated...";
             }
             this.$notify({
               type: "success",
@@ -378,9 +422,9 @@ export default {
           }
         })
         .catch(e => {
-          console.log(e.response.data);          
+          console.log(e.response.data);
         });
-    }, 
+    },
     //Edit user
     editUser(user) {
       this.editedIndex = 1;
@@ -480,5 +524,9 @@ export default {
 
 .headline {
   color: white !important;
+}
+
+.card {
+    background: white;    
 }
 </style>

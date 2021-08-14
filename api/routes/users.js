@@ -19,10 +19,20 @@ import EmqxAuthRule from "../models/emqx_auth.js";
 router.get("/users", checkAuth, async (req, res) => {
   try {
     var users = await User.find();
+    var totalUsers = users.length;
+
+    var usersActives = await User.find({ active: true });
+    var totalUsersActives = usersActives.length;
+
+    var usersInactives = await User.find({ active: false });
+    var totalUsersInactives = usersInactives.length;
 
     const response = {
       status: "success",
-      data: users
+      data: users,
+      totalUsers: totalUsers,
+      totalUsersActives: totalUsersActives,
+      totalUsersInactives: totalUsersInactives
     };
 
     res.json(response);
@@ -95,7 +105,9 @@ router.post("/register", checkAuth, async (req, res) => {
       name: name,
       email: email,
       created_at: new Date(),
-      password: encryptedPassword
+      password: encryptedPassword,
+      isAdmin: false,
+      active: false,
     };
 
     var user = await User.create(newUser);

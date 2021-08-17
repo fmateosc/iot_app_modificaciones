@@ -53,6 +53,16 @@
           }"
         >
         </sidebar-item>
+
+        <sidebar-item
+          v-if="$store.state.auth.userData.isAdmin"
+          :link="{
+            name: 'Broker MQTT',
+            icon: 'fab fa-slideshare',
+            path: '/broker'
+          }"
+        >
+        </sidebar-item>
       </template>
     </side-bar>
 

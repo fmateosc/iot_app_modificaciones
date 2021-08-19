@@ -799,8 +799,6 @@ export default {
         class: "danger",
         message: "{'fanstatus': 'stop'}"
       },
-
-
     };
   },
 

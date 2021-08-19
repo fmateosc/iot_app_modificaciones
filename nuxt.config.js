@@ -15,7 +15,8 @@ export default {
       { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css?family=Poppins:200,300,400,600,700,800' },
       { rel: 'stylesheet', href: 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.2/css/all.min.css' },
       { rel: 'stylesheet', href: 'https://cdn.jsdelivr.net/npm/@mdi/font@4.x/css/materialdesignicons.min.css' },
-      { rel: 'stylesheet', href: 'https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.min.css' }
+      { rel: 'stylesheet', href: 'https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.min.css' },
+      
     ],      
     bodyAttrs: {
       class: '' // Add `white-content` class here to enable "white" mode.
@@ -34,7 +35,8 @@ export default {
   css: [
     'assets/css/demo.css',
     'assets/css/nucleo-icons.css',
-    'assets/sass/black-dashboard.scss'
+    'assets/sass/black-dashboard.scss',
+    
   ],
   /*
   ** Plugins to load before mounting the App
@@ -57,7 +59,7 @@ export default {
   modules: [
     '@nuxtjs/pwa',
     '@nuxtjs/axios',
-    'nuxt-highcharts',
+    'nuxt-highcharts'
   ],
 
   // Axios module configuration (https://go.nuxtjs.dev/config-axios)

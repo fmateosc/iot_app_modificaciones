@@ -63,6 +63,24 @@
           }"
         >
         </sidebar-item>
+
+        <sidebar-item
+          :link="{
+            name: 'Components',
+            icon: 'tim-icons icon-atom',
+            path: '/components'
+          }"
+        >
+        </sidebar-item>
+
+        <sidebar-item
+          :link="{
+            name: 'Component Chart Line',
+            icon: 'tim-icons icon-atom',
+            path: '/chart-line'
+          }"
+        >
+        </sidebar-item>
       </template>
     </side-bar>
 

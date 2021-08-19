@@ -37,4 +37,30 @@ router.get("/get-broker-info", checkAuth,  async (req, res) => {
   }
 });
 
+//GET BROKER CLIENTS
+router.get("/get-broker-clients", checkAuth,  async (req, res) => {
+  try {
+    const url = "http://localhost:8085/api/v4/clients/";
+
+    const infoClients = await axios.get(url, auth);
+        
+    const response = {
+      status: "success",
+      data: infoClients.data
+    };
+
+    res.json(response);
+  } catch (error) {
+    console.log("ERROR GETTING INFO");
+    console.log(error);
+
+    const response = {
+      status: "error",
+      error: error
+    };
+
+    return res.status(500).json(response);
+  }
+});
+
 module.exports = router;

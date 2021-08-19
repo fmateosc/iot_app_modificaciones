@@ -1,53 +1,55 @@
 <template>
-  <div class="row">
-    <div class="col-lg-3 col-6">
-      <!-- small box -->
-      <div class="small-box bg-info">
-        <div class="inner">
-          <h3>Systen name</h3>
-          <p>{{ brokerInfo.systemName }}</p>
-        </div>
-        <div class="icon">
-          <i class="fas fa-file-alt"></i>
-        </div>
-      </div>
-    </div>
-
-    <div class="col-lg-3 col-6">
-      <!-- small box -->
-      <div class="small-box bg-success">
-        <div class="inner">
-          <h3>version</h3>
-          <p>{{ brokerInfo.version }}</p>
-        </div>
-        <div class="icon">
-          <i class="fab fa-buffer"></i>
+  <div data-app>
+    <div class="row">
+      <div class="col-lg-3 col-6">
+        <!-- small box -->
+        <div class="small-box bg-info">
+          <div class="inner">
+            <h3>Systen name</h3>
+            <p>{{ brokerInfo.systemName }}</p>
+          </div>
+          <div class="icon">
+            <i class="fas fa-file-alt"></i>
+          </div>
         </div>
       </div>
-    </div>
 
-    <div class="col-lg-3 col-6">
-      <!-- small box -->
-      <div class="small-box bg-warning">
-        <div class="inner">
-          <h3>Uptime</h3>
-          <p>{{ brokerInfo.uptime }}</p>
-        </div>
-        <div class="icon">
-          <i class="fa fa-hourglass" aria-hidden="true"></i>
+      <div class="col-lg-3 col-6">
+        <!-- small box -->
+        <div class="small-box bg-success">
+          <div class="inner">
+            <h3>version</h3>
+            <p>{{ brokerInfo.version }}</p>
+          </div>
+          <div class="icon">
+            <i class="fab fa-buffer"></i>
+          </div>
         </div>
       </div>
-    </div>
 
-    <div class="col-lg-3 col-6">
-      <!-- small box -->
-      <div class="small-box bg-danger">
-        <div class="inner">
-          <h3>System time</h3>
-          <p>{{ brokerInfo.datetime }}</p>
+      <div class="col-lg-3 col-6">
+        <!-- small box -->
+        <div class="small-box bg-warning">
+          <div class="inner">
+            <h3>Uptime</h3>
+            <p>{{ brokerInfo.uptime }}</p>
+          </div>
+          <div class="icon">
+            <i class="fa fa-hourglass" aria-hidden="true"></i>
+          </div>
         </div>
-        <div class="icon">
-          <i class="far fa-clock"></i>
+      </div>
+
+      <div class="col-lg-3 col-6">
+        <!-- small box -->
+        <div class="small-box bg-danger">
+          <div class="inner">
+            <h3>System time</h3>
+            <p>{{ brokerInfo.datetime }}</p>
+          </div>
+          <div class="icon">
+            <i class="far fa-clock"></i>
+          </div>
         </div>
       </div>
     </div>
@@ -65,11 +67,11 @@ export default {
         systemName: "",
         uptime: "",
         datetime: ""
-      }
+      },      
+      brokerClients: []
     };
   },
   mounted() {
-    //this.getBrokerInfo();
     this.getBrokerInfo();
   },
   methods: {
@@ -80,6 +82,7 @@ export default {
         }
       };
 
+      //Broker information
       try {
         const res = await this.$axios.get("/get-broker-info", axiosHeaders);
 
@@ -89,7 +92,20 @@ export default {
           this.brokerInfo.uptime = res.data.data.data[0].uptime;
           this.brokerInfo.datetime = res.data.data.data[0].datetime;
 
-          //Actualizamos la información del broker cada 5 segundos 
+          //Broker clients
+          try {
+            const res = await this.$axios.get(
+              "/get-broker-clients",
+              axiosHeaders
+            );
+
+            if (res.data.status == "success") {
+              this.brokerClients = res.data.data.data[0];
+              console.log(this.brokerClients.clientid);
+            }
+          } catch (error) {}
+
+          //Actualizamos la información del broker cada 5 segundos
           setTimeout(() => {
             this.getBrokerInfo();
           }, 5000);

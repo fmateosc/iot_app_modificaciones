@@ -81,6 +81,15 @@
           }"
         >
         </sidebar-item>
+
+        <sidebar-item
+          :link="{
+            name: 'Component Vue Charts',
+            icon: 'tim-icons icon-atom',
+            path: '/vue-charts'
+          }"
+        >
+        </sidebar-item>
       </template>
     </side-bar>
 

@@ -1,0 +1,85 @@
+.text-muted {
+  color: #6c757d !important;
+}
+
+.p-0 {
+  padding: 0 !important;
+}
+
+.pt-3, .py-3 {
+  padding-top: 1rem !important;
+}
+
+.mt-3, .my-3 {
+  margin-top: 1rem !important;
+}
+
+h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
+  margin-bottom: 1.375rem;
+  font-weight: 600;
+  line-height: 1.25;
+  color: #373737;
+}
+
+h3, .h3 {
+  font-size: 1.5rem;
+}
+
+.block.block-rounded {
+  border-radius: 0.25rem;
+}
+
+.block {
+  margin-bottom: 1.875rem;
+  background-color: #fff;
+  box-shadow: 0 1px 2px rgb(216 223 227 / 50%), 0 1px 2px rgb(216 223 227 / 50%);
+}
+
+.block.block-rounded > .block-header, .block.block-rounded > .nav-tabs {
+  border-top-left-radius: 0.2rem;
+  border-top-right-radius: 0.2rem;
+}
+
+.block-header-default {
+  background-color: #d9dadb !important;
+}
+
+.block-title {
+  flex: 1 1 auto;
+  min-height: 1.75rem;
+  margin: 0;
+  font-size: 0.875rem;
+  font-weight: 600;
+  line-height: 1.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.0625rem;
+}
+
+.block.block-rounded > .block-header, .block.block-rounded > .nav-tabs {
+  border-top-left-radius: 0.2rem;
+  border-top-right-radius: 0.2rem;
+}
+
+.block-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.625rem 1.25rem;
+  transition: opacity 0.25s ease-out;
+}
+
+.block-content {
+  transition: opacity 0.25s ease-out;
+  width: 100%;
+  margin: 0 auto;
+  padding: 1.25rem 1.25rem 1px;
+  overflow-x: visible;
+}
+
+.row-footer {  
+  display: flex;
+  flex-wrap: wrap;
+  margin-right: -14px;
+  margin-left: -14px;
+}

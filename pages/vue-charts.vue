@@ -35,13 +35,44 @@
         <base-block title="Simple" rounded header-bg> 
           <div class="row text-center">
             <div class="col-md-4">
-              <vue-easy-pie-chart :percent="pieChartSimple[0]" :line-width="3" :size="100" bar-color="#abe37d" track-color="#eeeeee" scale-color="#dddddd">
-                  80<small class="text-muted">/100</small>
+              <vue-easy-pie-chart 
+                :percent="pieChartSimple[0]" 
+                :line-width="3" :size="100" 
+                bar-color="#abe37d" 
+                track-color="#eeeeee" 
+                scale-color="#dddddd"
+                >
+                  70<small class="text-muted">%</small>
                 </vue-easy-pie-chart>
-            </div>    
+            </div>  
+
+            <div class="col-md-4">
+              <vue-easy-pie-chart 
+                :percent="pieChartSimple[1]" 
+                :line-width="3" :size="100" 
+                bar-color="#abe37d" 
+                track-color="#eeeeee" 
+                scale-color="#dddddd"
+                >
+                  65<small class="text-muted">%</small>
+                </vue-easy-pie-chart>
+            </div> 
+
+            <div class="col-md-4">
+              <vue-easy-pie-chart 
+                :percent="pieChartSimple[2]" 
+                :line-width="3" :size="100" 
+                bar-color="#abe37d" 
+                track-color="#eeeeee" 
+                scale-color="#dddddd"
+                >
+                  55<small class="text-muted">%</small>
+                </vue-easy-pie-chart>
+            </div>             
           </div>
         </base-block>
-      </div>   
+      </div>  
+      <!-- Vue Easy Pie Chart --> 
     </div>  
   </div>
 </template>
@@ -84,7 +115,7 @@ export default {
             pointBorderColor: "#fff",
             pointHoverBackgroundColor: "#fff",
             pointHoverBorderColor: "rgba(220,220,220,1)",
-            data: [30, 32, 40, 45, 43, 38, 55]
+            data: [50, 32, 40, 45, 43, 38, 55]
           },
           {
             label: "Humidity (%)",
@@ -117,8 +148,7 @@ export default {
           }
         ]
       },
-      pieChartSimple: [80, 45, 25, 80, 45, 25],
-      pieChartAvatar: [80, 45, 25, 80, 45, 25]
+      pieChartSimple: [70, 65, 55],
     };
   },
   methods: {

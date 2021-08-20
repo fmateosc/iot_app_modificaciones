@@ -2,6 +2,14 @@
   color: #6c757d !important;
 }
 
+.text-gray {
+  color: #ced4da !important;
+}
+
+.text-black {
+  color: black !important;
+}
+
 .p-0 {
   padding: 0 !important;
 }
@@ -23,6 +31,10 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 
 h3, .h3 {
   font-size: 1.5rem;
+}
+
+h4, .h4 {
+  font-size: 1.25rem;
 }
 
 .block.block-rounded {
@@ -77,9 +89,51 @@ h3, .h3 {
   overflow-x: visible;
 }
 
+.block-content p, .block-content .push, .block-content .block, .block-content .items-push > div {
+  margin-bottom: 1.25rem;
+}
+
 .row-footer {  
   display: flex;
   flex-wrap: wrap;
   margin-right: -14px;
   margin-left: -14px;
 }
+
+/*RIBBONS*/
+.ribbon {
+  position: relative;
+  min-height: 3.25rem;
+}
+
+.ribbon-primary .ribbon-box {
+  color: #fff;
+  background-color: #5179d6;
+}
+
+.ribbon-box {
+  position: absolute;
+  top: 0.75rem;
+  right: 0;
+  padding: 0 0.75rem;
+  height: 2.25rem;
+  line-height: 2.25rem;
+  z-index: 5;
+  font-weight: 600;
+  border-top-left-radius: 0.25rem;
+  border-bottom-left-radius: 0.25rem;
+}
+
+.ribbon-bottom .ribbon-box {
+  top: auto;
+  bottom: 0.75rem;
+}
+
+.ribbon-left .ribbon-box {
+  right: auto;
+  left: 0;
+  border-radius: 0;
+  border-top-right-radius: 0.25rem;
+  border-bottom-right-radius: 0.25rem;
+}
+

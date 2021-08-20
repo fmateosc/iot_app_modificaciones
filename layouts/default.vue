@@ -90,6 +90,15 @@
           }"
         >
         </sidebar-item>
+
+        <sidebar-item
+          :link="{
+            name: 'Component Ribbon',
+            icon: 'tim-icons icon-atom',
+            path: '/ribbon'
+          }"
+        >
+        </sidebar-item>
       </template>
     </side-bar>
 

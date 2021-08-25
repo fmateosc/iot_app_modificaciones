@@ -19,7 +19,9 @@
         <!-- .nav-menu -->
 
         <a href="#about" class="get-started-btn scrollto">About US</a>
-        <a href="#" @click="goToDashboard()" class="get-started-btn scrollto">LOGIN</a>
+        <a href="#" @click="goToDashboard()" class="get-started-btn scrollto"
+          >LOGIN</a
+        >
       </div>
     </header>
 
@@ -154,49 +156,9 @@
       <!-- End About Section -->
 
       <!-- ======= Counts Section ======= -->
-      <section id="counts" class="counts section-bg">
-        <div class="container">
-          <div class="row justify-content-end">
-            <div
-              class="col-lg-3 col-md-5 col-6 d-md-flex align-items-md-stretch"
-            >
-              <div class="count-box">
-                <span data-toggle="counter-up">65</span>
-                <p>Happy Clients</p>
-              </div>
-            </div>
-
-            <div
-              class="col-lg-3 col-md-5 col-6 d-md-flex align-items-md-stretch"
-            >
-              <div class="count-box">
-                <span data-toggle="counter-up">85</span>
-                <p>Projects</p>
-              </div>
-            </div>
-
-            <div
-              class="col-lg-3 col-md-5 col-6 d-md-flex align-items-md-stretch"
-            >
-              <div class="count-box">
-                <span data-toggle="counter-up">12</span>
-                <p>Years of experience</p>
-              </div>
-            </div>
-
-            <div
-              class="col-lg-3 col-md-5 col-6 d-md-flex align-items-md-stretch"
-            >
-              <div class="count-box">
-                <span data-toggle="counter-up">15</span>
-                <p>Awards</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+      
       <!-- End Counts Section -->
-
+        <Counter />
       <!-- ======= About Video Section ======= -->
       <section id="about-video" class="about-video">
         <div class="container" data-aos="fade-up">
@@ -340,108 +302,7 @@
       <!-- End Clients Section -->
 
       <!-- ======= Testimonials Section ======= -->
-      <section id="testimonials" class="testimonials">
-        <div class="container" data-aos="fade-up">
-          <div class="section-title">
-            <h2>Testimonials</h2>
-            <p>
-              Magnam dolores commodi suscipit. Necessitatibus eius consequatur
-              ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam
-              quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea.
-              Quia fugiat sit in iste officiis commodi quidem hic quas.
-            </p>
-          </div>
-
-          <div class="owl-carousel testimonials-carousel">
-            <div class="testimonial-item">
-              <p>
-                <i class="bx bxs-quote-alt-left quote-icon-left"></i>
-                Proin iaculis purus consequat sem cure digni ssim donec
-                porttitora entum suscipit rhoncus. Accusantium quam, ultricies
-                eget id, aliquam eget nibh et. Maecen aliquam, risus at semper.
-                <i class="bx bxs-quote-alt-right quote-icon-right"></i>
-              </p>
-              <img
-                src="~/assets/img/testimonials/testimonials-1.jpg"
-                class="testimonial-img"
-                alt=""
-              />
-              <h3>Saul Goodman</h3>
-              <h4>Ceo &amp; Founder</h4>
-            </div>
-
-            <div class="testimonial-item">
-              <p>
-                <i class="bx bxs-quote-alt-left quote-icon-left"></i>
-                Export tempor illum tamen malis malis eram quae irure esse
-                labore quem cillum quid cillum eram malis quorum velit fore eram
-                velit sunt aliqua noster fugiat irure amet legam anim culpa.
-                <i class="bx bxs-quote-alt-right quote-icon-right"></i>
-              </p>
-              <img
-                src="~/assets/img/testimonials/testimonials-2.jpg"
-                class="testimonial-img"
-                alt=""
-              />
-              <h3>Sara Wilsson</h3>
-              <h4>Designer</h4>
-            </div>
-
-            <div class="testimonial-item">
-              <p>
-                <i class="bx bxs-quote-alt-left quote-icon-left"></i>
-                Enim nisi quem export duis labore cillum quae magna enim sint
-                quorum nulla quem veniam duis minim tempor labore quem eram duis
-                noster aute amet eram fore quis sint minim.
-                <i class="bx bxs-quote-alt-right quote-icon-right"></i>
-              </p>
-              <img
-                src="~/assets/img/testimonials/testimonials-3.jpg"
-                class="testimonial-img"
-                alt=""
-              />
-              <h3>Jena Karlis</h3>
-              <h4>Store Owner</h4>
-            </div>
-
-            <div class="testimonial-item">
-              <p>
-                <i class="bx bxs-quote-alt-left quote-icon-left"></i>
-                Fugiat enim eram quae cillum dolore dolor amet nulla culpa
-                multos export minim fugiat minim velit minim dolor enim duis
-                veniam ipsum anim magna sunt elit fore quem dolore labore illum
-                veniam.
-                <i class="bx bxs-quote-alt-right quote-icon-right"></i>
-              </p>
-              <img
-                src="~/assets/img/testimonials/testimonials-4.jpg"
-                class="testimonial-img"
-                alt=""
-              />
-              <h3>Matt Brandon</h3>
-              <h4>Freelancer</h4>
-            </div>
-
-            <div class="testimonial-item">
-              <p>
-                <i class="bx bxs-quote-alt-left quote-icon-left"></i>
-                Quis quorum aliqua sint quem legam fore sunt eram irure aliqua
-                veniam tempor noster veniam enim culpa labore duis sunt culpa
-                nulla illum cillum fugiat legam esse veniam culpa fore nisi
-                cillum quid.
-                <i class="bx bxs-quote-alt-right quote-icon-right"></i>
-              </p>
-              <img
-                src="~/assets/img/testimonials/testimonials-5.jpg"
-                class="testimonial-img"
-                alt=""
-              />
-              <h3>John Larson</h3>
-              <h4>Entrepreneur</h4>
-            </div>
-          </div>
-        </div>
-      </section>
+      <Features /> 
       <!-- End Testimonials Section -->
 
       <!-- ======= Services Section ======= -->
@@ -1203,6 +1064,9 @@
 </template>
 
 <script>
+import Counter from "../components/Counter";
+import Features from "../components/Features";
+
 import "@/assets/css/style.css";
 import "@/assets/vendor/bootstrap/css/bootstrap.min.css";
 import "@/assets/vendor/icofont/icofont.min.css";
@@ -1226,16 +1090,22 @@ import "@/assets/vendor/aos/aos.js";
 export default {
   middleware: "index",
   layout: "landingpage",
+  Counter,
+  Features,
   methods: {
-    goToDashboard(){
+    goToDashboard() {
       $nuxt.$router.push("/dashboard");
     }
-  },  
+  },
   mounted() {}
 };
 </script>
 
 <style>
+h4 {
+  color: black !important;
+}
+
 p {
   margin-top: 0;
   margin-bottom: 1rem;
@@ -1302,4 +1172,112 @@ p {
 .about .content ul li {
   color: #212529 !important;
 }
+
+.single-counter .counter {
+    font-size: 60px;
+    font-weight: 200;
+    color: #5b39c9;
+    line-height: 42px;
+    margin-bottom: 21px;
+    display: block;
+}
+
+.swiper-slide {
+    flex-shrink: 0;
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transition-property: transform;
+}
+
+/*==============================================
+    Feature area
+==============================================*/
+.section-title h2 {
+    color: #36324a;
+    font-weight: 600;
+    margin-bottom: 30px;
+}
+.section-title p {
+    color: #6f6c7f;
+    line-height: 30px;
+}
+.section-title {
+    position: relative;
+    margin-top: -8px;
+    margin: -8px 40px 78px;
+}
+
+.feature-icon{
+    width: 95px;
+    height: 95px;
+    margin: auto;
+    margin-bottom: 44px;
+}
+.single-feature-inner {
+    padding: 74px 10px 66px;
+}
+.swiper-slide-next .single-feature-inner {
+	border: 4px solid #5b39c9;
+	border-radius: 10px;
+	margin: 5px -10px 50px -10px;
+}
+.feature-carousel .owl-stage-outer {
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+.single-feature-inner .feature-icon svg rect,
+.single-feature-inner .feature-icon svg path {
+    fill: #36324a;
+    -webkit-transition: .3s all linear;
+    transition: .3s all linear;
+}
+
+.center .single-feature-inner .feature-icon svg rect,
+.center .single-feature-inner .feature-icon svg path {
+    fill: #f77fdf;
+}
+
+.single-feature-inner p {
+    margin-bottom: 0;
+    color: #6f6c7f;
+    font-size: 16px;
+    line-height: 30px;
+}
+.single-feature-inner h5 {
+    margin-bottom: 34px;
+    color: #36324a;
+    font-weight: 600;
+}
+.feature-carousel button.owl-dot {
+    height: 7px;
+    width: 7px;
+    background: #ded7f4 !important;
+    margin-right: 5px;
+    border-radius: 50%;
+    -webkit-transition: .3s all linear;
+    transition: .3s all linear;
+    line-height: 10px;
+    vertical-align: middle;
+}
+.feature-carousel .swiper-pagination-bullet-active {
+    background: #5b39c9 !important;
+    height: 10px;
+    width: 10px;
+}
+.feature-carousel .owl-dots {
+    text-align: center;
+    margin-top: 36px;
+}
+.box-top{
+    border-top: 2px solid #f7f6f9;
+}
+.gradient-bg {
+    background: #5b39c9;
+    background: -webkit-linear-gradient(left, #5b39c9 0%,#f77ade 100%);
+    background: linear-gradient(to right, #5b39c9 0%,#f77ade 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#5b39c9', endColorstr='#f77ade',GradientType=1 );
+}
+
+
 </style>
